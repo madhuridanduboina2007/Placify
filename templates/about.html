@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="about-page">
+
+```
+<div class="about-hero">
+    <span class="about-badge">✨ About Placify</span>
+
+    <h1>
+        Connecting Students
+        <span>With Opportunities</span>
+    </h1>
+
+    <p>
+        Placify is a college placement management system designed
+        to make the placement journey simple, organized, and accessible
+        for students, administrators, and companies.
+    </p>
+</div>
+
+
+<div class="about-cards">
+
+    <div class="about-card">
+        <div class="about-icon">🎓</div>
+        <h2>For Students</h2>
+        <p>
+            Students can create their profile, explore available jobs,
+            check eligibility, apply for suitable opportunities,
+            and track their applications.
+        </p>
+    </div>
+
+
+    <div class="about-card">
+        <div class="about-icon">🏢</div>
+        <h2>For Companies</h2>
+        <p>
+            Companies can be registered in the placement system
+            and their job opportunities can be managed efficiently.
+        </p>
+    </div>
+
+
+    <div class="about-card">
+        <div class="about-icon">⚙️</div>
+        <h2>For Administrators</h2>
+        <p>
+            Administrators can manage students, companies, jobs,
+            applications, and other placement-related information
+            from one centralized system.
+        </p>
+    </div>
+
+</div>
+
+
+<div class="about-purpose">
+
+    <div class="purpose-content">
+        <span class="section-label">OUR PURPOSE</span>
+
+        <h2>
+            Making Campus Placements
+            <span>Simple & Organized</span>
+        </h2>
+
+        <p>
+            Placify brings important placement activities together
+            in one platform. Instead of managing information across
+            different systems, students and administrators can access
+            the information they need from a single place.
+        </p>
+
+        <div class="purpose-points">
+
+            <div class="purpose-point">
+                <span>✓</span>
+                <p>Centralized placement information</p>
+            </div>
+
+            <div class="purpose-point">
+                <span>✓</span>
+                <p>Easy job and company management</p>
+            </div>
+
+            <div class="purpose-point">
+                <span>✓</span>
+                <p>Simple student application tracking</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="about-cta">
+
+    <h2>Ready to Begin Your Career Journey?</h2>
+
+    <p>
+        Explore opportunities and take the next step toward your
+        career goals.
+    </p>
+
+    <div class="about-buttons">
+
+        <a href="{{ url_for('jobs') }}" class="about-btn primary">
+            Explore Jobs →
+        </a>
+
+        <a href="{{ url_for('register') }}" class="about-btn secondary">
+            Create Account
+        </a>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+{% endblock %}

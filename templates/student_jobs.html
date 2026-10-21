@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Available Jobs | Placify
+
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="student-table-card">
+
+        <div class="table-header">
+
+            <div>
+
+                <span class="auth-badge">
+                    Placement Opportunities
+                </span>
+
+                <h2>Available Jobs</h2>
+
+                <p>
+                    Explore placement opportunities and apply for suitable jobs.
+                </p>
+
+            </div>
+
+            <div>
+
+                <a
+                    href="{{ url_for('student_dashboard') }}"
+                    class="auth-btn"
+                >
+                    ← Dashboard
+                </a>
+
+            </div>
+            
+
+
+        <table class="company-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Company</th>
+
+                    <th>Job Title</th>
+
+                    <th>Description</th>
+
+                    <th>Required CGPA</th>
+
+                    <th>Required Skills</th>
+
+                    <th>Salary</th>
+
+                    <th>Deadline</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for job in jobs %}
+
+                <tr>
+
+                    <!-- Company -->
+
+                    <td>
+                        {{ job["company_name"] }}
+                    </td>
+
+
+                    <!-- Job Title -->
+
+                    <td>
+                        <strong>
+                            {{ job["job_title"] }}
+                        </strong>
+                    </td>
+
+
+                    <!-- Description -->
+
+                    <td>
+
+                        {% if job["description"] %}
+
+                            {{ job["description"] }}
+
+                        {% else %}
+
+                            Not specified
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- Required CGPA -->
+
+                    <td>
+                        {{ job["required_cgpa"] }}
+                    </td>
+
+
+                    <!-- Required Skills -->
+
+                    <td>
+
+                        {% if job["required_skills"] %}
+
+                            {{ job["required_skills"] }}
+
+                        {% else %}
+
+                            Not specified
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- Salary -->
+
+                    <td>
+
+                        {% if job["salary"] %}
+
+                            ₹{{ job["salary"] }}
+
+                        {% else %}
+
+                            Not specified
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- Deadline -->
+
+                    <td>
+                        {{ job["deadline"] }}
+                    </td>
+
+                     <!-- Eligibility button -->
+                    <a
+                         href="{{ url_for('check_eligibility', job_id=job['id']) }}"
+                         class="btn"
+                    >
+                         Check Eligibility
+                    </a>
+
+
+
+                    <!-- Status -->
+
+                    <td>
+
+                        {% if job["deadline"] >= today %}
+
+                            <span
+                                style="
+                                    display: inline-block;
+                                    padding: 6px 12px;
+                                    background: #dcfce7;
+                                    color: #166534;
+                                    border-radius: 20px;
+                                    font-weight: 700;
+                                    font-size: 13px;
+                                "
+                            >
+                                🟢 Open
+                            </span>
+
+                        {% else %}
+
+                            <span
+                                style="
+                                    display: inline-block;
+                                    padding: 6px 12px;
+                                    background: #fee2e2;
+                                    color: #991b1b;
+                                    border-radius: 20px;
+                                    font-weight: 700;
+                                    font-size: 13px;
+                                "
+                            >
+                                🔴 Closed
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- Action -->
+
+                    <td>
+
+                        {% if job["deadline"] >= today %}
+
+                            <a
+                                href="{{ url_for('apply_job', job_id=job['id']) }}"
+                                style="
+                                    display: inline-block;
+                                    padding: 10px 18px;
+                                    background: #6c63ff;
+                                    color: #ffffff !important;
+                                    text-decoration: none !important;
+                                    border-radius: 10px;
+                                    font-size: 15px;
+                                    font-weight: 700;
+                                    text-align: center;
+                                    cursor: pointer;
+                                "
+                            >
+                                Apply
+                            </a>
+
+                        {% else %}
+
+                            <span
+                                style="
+                                    display: inline-block;
+                                    padding: 10px 14px;
+                                    color: #777;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                "
+                            >
+                                Application Closed
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+
+                {% else %}
+
+                <tr>
+
+                    <td
+                        colspan="9"
+                        style="text-align: center;"
+                    >
+                        No jobs available currently.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

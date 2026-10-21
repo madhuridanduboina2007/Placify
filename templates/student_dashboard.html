@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}
+Student Dashboard | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-section">
+
+    <div class="dashboard-header">
+
+        <div>
+            <span class="dashboard-badge">🎓 Student Portal</span>
+
+            <h1>
+                Welcome, {{ session['student_name'] }} 👋
+            </h1>
+
+            <p>
+                Manage your placement journey from one place.
+            </p>
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <!-- Browse Jobs -->
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-icon">
+                💼
+            </div>
+
+            <h2>Browse Jobs</h2>
+
+            <p>
+                Explore available placement opportunities
+                from participating companies.
+            </p>
+
+            <a href="{{ url_for('student_jobs') }}" class="auth-btn">
+                View Jobs →
+            </a>
+
+        </div>
+
+
+        <!-- Eligibility -->
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-icon">
+                🎯
+            </div>
+
+            <h2>Check Eligibility</h2>
+
+            <p>
+                Find jobs that match your qualifications,
+                department and CGPA.
+            </p>
+            <a href="{{ url_for('student_jobs') }}" class="btn">
+               Explore Jobs
+            </a> 
+            
+
+        </div>
+
+
+        <!-- Applications -->
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-icon">
+                📋
+            </div>
+
+            <h2>My Applications</h2>
+
+            <p>
+                Track the status of your job applications
+                from one place.
+            </p>
+
+            <a href="{{url_for('my_applications')}}" class="dashboard-link">
+                View Applications →
+            </a>
+
+        </div>
+
+
+        <!-- Profile -->
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-icon">
+                👤
+            </div>
+
+            <h2>My Profile</h2>
+
+            <p>
+                View and manage your student profile
+                information.
+            </p>
+
+            <a href="{{url_for('profile')}}" class="dashboard-link">
+                View Profile →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

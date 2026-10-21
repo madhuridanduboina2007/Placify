@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Eligibility Check</h1>
+
+    <div class="card">
+
+        <h2>{{ job["job_title"] }}</h2>
+
+        <p>
+            <strong>Company:</strong>
+            {{ job["company_name"] }}
+        </p>
+
+        <p>
+            <strong>Required CGPA:</strong>
+            {{ job["required_cgpa"] }}
+        </p>
+
+        <p>
+            <strong>Required Department:</strong>
+            {{ job["required_department"] }}
+        </p>
+
+        <p>
+            <strong>Required Year:</strong>
+            {{ job["required_year"] }}
+        </p>
+
+        <p>
+            <strong>Required Skills:</strong>
+            {{ job["required_skills"] }}
+        </p>
+
+    </div>
+
+
+    {% if eligible %}
+
+        <!-- ELIGIBLE -->
+
+        <div class="card">
+
+            <h2>🟢 You are Eligible!</h2>
+
+            <p>
+                Congratulations! You meet all the requirements
+                for this job.
+            </p>
+
+            <h3>Eligibility Criteria</h3>
+
+            <p>✓ CGPA matched</p>
+            <p>✓ Department matched</p>
+            <p>✓ Year matched</p>
+            <p>✓ Required skills matched</p>
+
+            <a
+                href="{{ url_for('apply_job', job_id=job['id']) }}"
+                class="btn"
+            >
+                Apply Now
+            </a>
+
+        </div>
+
+    {% else %}
+
+        <!-- NOT ELIGIBLE -->
+
+        <div class="card">
+
+            <h2>🔴 You are Not Eligible</h2>
+
+            <p>
+                You currently do not meet one or more
+                requirements for this job.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Why are you not eligible?</h2>
+
+            {% for reason in reasons %}
+
+                <div class="eligibility-reason">
+
+                    <h3>❌ {{ reason["type"] }}</h3>
+
+                    <p>
+                        {{ reason["message"] }}
+                    </p>
+
+                    {% if reason["required"] %}
+                        <p>
+                            <strong>Required:</strong>
+                            {{ reason["required"] }}
+                        </p>
+                    {% endif %}
+
+                    {% if reason["student"] %}
+                        <p>
+                            <strong>Your value:</strong>
+                            {{ reason["student"] }}
+                        </p>
+                    {% endif %}
+
+                    {% if reason["missing"] %}
+                        <p>
+                            <strong>Missing:</strong>
+                            {{ reason["missing"] }}
+                        </p>
+                    {% endif %}
+
+                </div>
+
+                <hr>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>🎯 What should you improve?</h2>
+
+            {% if missing_skills %}
+
+                <h3>💻 Missing Skills</h3>
+
+                <p>
+                    You should improve:
+                </p>
+
+                <ul>
+
+                    {% for skill in missing_skills %}
+
+                        <li>{{ skill }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% endif %}
+
+            <p>
+                Your personalized improvement resources
+                will appear here in the next phase.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

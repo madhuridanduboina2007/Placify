@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Student | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-section">
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-header">
+
+            <div>
+                <span class="dashboard-label">
+                    STUDENT MANAGEMENT
+                </span>
+
+                <h1>Edit Student</h1>
+
+                <p>
+                    Update the student's information.
+                </p>
+            </div>
+
+            <a href="{{ url_for('students') }}" class="logout-btn">
+                ← Back to Students
+            </a>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            {% if error %}
+                <div class="error-message">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+
+            <form method="POST" class="auth-form">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Name</label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ student['name'] }}"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ student['email'] }}"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Phone</label>
+
+                        <input
+                            type="text"
+                            name="phone"
+                            value="{{ student['phone'] }}"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Department</label>
+
+                        <input
+                            type="text"
+                            name="department"
+                            value="{{ student['department'] }}"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Year</label>
+
+                        <input
+                            type="text"
+                            name="year"
+                            value="{{ student['year'] }}"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>CGPA</label>
+
+                        <input
+                            type="number"
+                            name="cgpa"
+                            step="0.01"
+                            min="0"
+                            max="10"
+                            value="{{ student['cgpa'] }}"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="auth-btn">
+                    Update Student
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

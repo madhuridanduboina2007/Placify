@@ -1,0 +1,161 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+My Applications | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-section">
+    <div class="dashboard-container">
+
+        <div class="dashboard-header">
+            <div>
+                <span class="dashboard-label">
+                    PLACEMENT APPLICATIONS
+                </span>
+
+                <h1>My Applications</h1>
+
+                <p>
+                    Track your applications, review feedback,
+                    and find ways to improve.
+                </p>
+            </div>
+
+            <a href="{{ url_for('student_dashboard') }}"
+               class="logout-btn">
+                ← Dashboard
+            </a>
+        </div>
+
+        {% if application_feedback %}
+
+        <div class="company-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Job Title</th>
+                        <th>Applied Date</th>
+                        <th>Status</th>
+                        <th>Feedback & Improvement</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for item in application_feedback %}
+                    {% set application = item["application"] %}
+
+                    <tr>
+                        <td>
+                            {{ application["company_name"] }}
+                        </td>
+
+                        <td>
+                            {{ application["job_title"] }}
+                        </td>
+
+                        <td>
+                            {{ application["application_date"] }}
+                        </td>
+
+                        <td>
+                            {% if application["status"] == "Selected" %}
+                                <span class="status-selected">
+                                    Selected
+                                </span>
+                            {% elif application["status"] == "Shortlisted" %}
+                                <span class="status-shortlisted">
+                                    Shortlisted
+                                </span>
+                            {% elif application["status"] == "Rejected" %}
+                                <span class="status-rejected">
+                                    Rejected
+                                </span>
+                            {% else %}
+                                <span class="status-applied">
+                                    {{ application["status"] }}
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if application["status"] == "Rejected" %}
+
+                                <h4>Why was I rejected?</h4>
+
+                                <p>
+                                    <strong>Reason:</strong>
+                                    {{ application["rejection_reason"] or "Not specified" }}
+                                </p>
+
+                                <p>
+                                    <strong>Admin feedback:</strong>
+                                </p>
+
+                                <p>
+                                    {{ application["admin_feedback"] or "No additional feedback provided." }}
+                                </p>
+
+                                <hr>
+
+                                <h4>🎯 Improve Your Skills</h4>
+
+                                {% for resource in item["resources"] %}
+                                    <div>
+                                        <strong>{{ resource["title"] }}</strong>
+
+                                        <p>
+                                            {{ resource["description"] }}
+                                        </p>
+
+                                        <a href="{{ resource['url'] }}"
+                                           target="_blank"
+                                           rel="noopener noreferrer">
+                                            Open Learning Resource →
+                                        </a>
+                                    </div>
+
+                                    <br>
+                                {% endfor %}
+
+                            {% else %}
+                                <p>
+                                    Feedback and improvement resources
+                                    will appear here if your application
+                                    is rejected.
+                                </p>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% else %}
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">📄</div>
+
+            <h2>No Applications Yet</h2>
+
+            <p>
+                You have not applied for any placement opportunities yet.
+            </p>
+
+            <a href="{{ url_for('student_jobs') }}"
+               class="dashboard-link">
+                Explore Jobs →
+            </a>
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

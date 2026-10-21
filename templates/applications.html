@@ -1,0 +1,128 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Applications | Placify
+{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="student-table-card">
+
+        <div class="table-header">
+            <div>
+                <span class="auth-badge">Application Management</span>
+                <h2>Student Applications</h2>
+                <p>Review applications and provide feedback to students.</p>
+            </div>
+
+            <div>
+                <a href="{{ url_for('admin_dashboard') }}" class="auth-btn">
+                    ← Dashboard
+                </a>
+            </div>
+        </div>
+
+        <table class="company-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Company</th>
+                    <th>Job</th>
+                    <th>Applied Date</th>
+                    <th>Update Application</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for application in applications %}
+                <tr>
+                    <td>{{ application["id"] }}</td>
+                    <td>{{ application["student_name"] }}</td>
+                    <td>{{ application["company_name"] }}</td>
+                    <td>{{ application["job_title"] }}</td>
+                    <td>{{ application["application_date"] }}</td>
+
+                    <td>
+                        <form method="POST"
+                              action="{{ url_for(
+                                  'update_application_status',
+                                  application_id=application['id']
+                              ) }}">
+
+                            <label>Status</label>
+                            <select name="status" required>
+                                <option value="Applied"
+                                    {% if application["status"] == "Applied" %}selected{% endif %}>
+                                    Applied
+                                </option>
+
+                                <option value="Shortlisted"
+                                    {% if application["status"] == "Shortlisted" %}selected{% endif %}>
+                                    Shortlisted
+                                </option>
+
+                                <option value="Selected"
+                                    {% if application["status"] == "Selected" %}selected{% endif %}>
+                                    Selected
+                                </option>
+
+                                <option value="Rejected"
+                                    {% if application["status"] == "Rejected" %}selected{% endif %}>
+                                    Rejected
+                                </option>
+                            </select>
+
+                            <br><br>
+
+                            <label>Reason for rejection</label>
+                            <select name="rejection_reason">
+                                <option value="">Select a reason</option>
+
+                                {% for reason in [
+                                    "Technical Skills",
+                                    "Aptitude",
+                                    "Communication",
+                                    "Interview Performance",
+                                    "Resume",
+                                    "Other"
+                                ] %}
+                                    <option value="{{ reason }}"
+                                        {% if application["rejection_reason"] == reason %}selected{% endif %}>
+                                        {{ reason }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <br><br>
+
+                            <label>Feedback for student</label>
+                            <textarea
+                                name="admin_feedback"
+                                rows="3"
+                                placeholder="Explain what the student should improve..."
+                            >{{ application["admin_feedback"] or "" }}</textarea>
+
+                            <br><br>
+
+                            <button type="submit" class="auth-btn">
+                                Save Application
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+
+                {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        No applications received yet.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</section>
+{% endblock %}

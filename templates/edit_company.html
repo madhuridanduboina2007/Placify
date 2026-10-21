@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Company | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-card">
+
+        <div class="auth-icon">
+            ✏️
+        </div>
+
+        <span class="auth-badge">
+            Company Management
+        </span>
+
+        <h1>Edit Company</h1>
+
+        <p class="auth-subtitle">
+            Update company information.
+        </p>
+
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label for="name">
+                    Company Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="{{ company['name'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="{{ company['email'] or '' }}"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    value="{{ company['phone'] or '' }}"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="location">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    value="{{ company['location'] or '' }}"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="website">
+                    Website
+                </label>
+
+                <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    value="{{ company['website'] or '' }}"
+                >
+
+            </div>
+
+
+            <button type="submit" class="auth-btn">
+                Update Company →
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            <a href="{{ url_for('companies') }}">
+                ← Back to Companies
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

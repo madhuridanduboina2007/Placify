@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Profile | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-section">
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-header">
+
+            <div>
+                <span class="dashboard-label">
+                    STUDENT PROFILE
+                </span>
+
+                <h1>My Profile</h1>
+
+                <p>
+                    View your personal and academic information.
+                </p>
+            </div>
+
+            <a href="{{ url_for('student_dashboard') }}" class="logout-btn">
+                ← Dashboard
+            </a>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-icon">
+                👤
+            </div>
+
+            <h2>{{ student["name"] }}</h2>
+
+            <div class="profile-details">
+
+                <div class="profile-item">
+                    <strong>Email</strong>
+                    <span>{{ student["email"] }}</span>
+                </div>
+
+                <div class="profile-item">
+                    <strong>Phone</strong>
+                    <span>{{ student["phone"] }}</span>
+                </div>
+
+                <div class="profile-item">
+                    <strong>Department</strong>
+                    <span>{{ student["department"] }}</span>
+                </div>
+
+                <div class="profile-item">
+                    <strong>Year</strong>
+                    <span>{{ student["year"] }}</span>
+                </div>
+
+                <div class="profile-item">
+                    <strong>CGPA</strong>
+                    <span>{{ student["cgpa"] }}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

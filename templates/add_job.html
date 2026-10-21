@@ -1,0 +1,202 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Add Job | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-card">
+
+        <span class="auth-badge">
+            Job Management
+        </span>
+
+        <h2>Add New Job</h2>
+
+        <p>
+            Add a job opportunity for students.
+        </p>
+
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label for="company_id">
+                    Select Company
+                </label>
+
+                <select name="company_id" id="company_id" required>
+
+                    <option value="">
+                        Select Company
+                    </option>
+
+                    {% for company in companies %}
+
+                        <option value="{{ company['id'] }}">
+                            {{ company['name'] }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="job_title">
+                    Job Title
+                </label>
+
+                <input
+                    type="text"
+                    name="job_title"
+                    id="job_title"
+                    placeholder="Example: Python Developer"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="description">
+                    Job Description
+                </label>
+
+                <textarea
+                    name="description"
+                    id="description"
+                    rows="4"
+                    placeholder="Enter job description"
+                ></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="required_cgpa">
+                    Required CGPA
+                </label>
+
+                <input
+                    type="number"
+                    name="required_cgpa"
+                    id="required_cgpa"
+                    step="0.01"
+                    min="0"
+                    max="10"
+                    placeholder="Example: 7.5"
+                    required
+                >
+
+            </div>
+            <div class="form-group">
+                <label for="required_skills">
+                    Required Skills
+               </label>
+
+            <textarea
+                name="required_skills"
+                id="required_skills"
+                rows="3"
+                placeholder="Example: Python, Flask, SQL, HTML, CSS"
+                required
+            ></textarea>
+            </div>
+
+           <div class="form-group">
+               <label for="required_department">
+                   Required Department
+               </label>
+
+               <select
+                   name="required_department"
+                   id="required_department"
+                   required
+                >
+                  <option value="">Select Department</option>
+                  <option value="CSE">CSE</option>
+                  <option value="ECE">ECE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="MECH">MECH</option>
+                  <option value="CIVIL">CIVIL</option>
+                  <option value="IT">IT</option>
+              </select>
+           </div>
+
+
+           <div class="form-group">
+               <label for="required_year">
+                   Required Year
+               </label>
+
+               <select
+                   name="required_year"
+                   id="required_year"
+                   required
+                >
+                <option value="">Select Year</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+               </select>
+           </div>    
+            <div class="form-group">
+
+                <label for="salary">
+                    Salary (Annual)
+                </label>
+
+                <input
+                    type="number"
+                    name="salary"
+                    id="salary"
+                    step="0.01"
+                    placeholder="Example: 600000"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="deadline">
+                    Application Deadline
+                </label>
+
+                <input
+                    type="date"
+                    name="deadline"
+                    id="deadline"
+                    required
+                >
+
+            </div>
+
+            <button type="submit" class="auth-btn">
+                Add Job
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="{{ url_for('admin_dashboard') }}">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

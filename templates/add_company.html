@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Company | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-card">
+
+        <div class="auth-icon">
+            🏢
+        </div>
+
+        <span class="auth-badge">
+            Company Management
+        </span>
+
+        <h1>Add Company</h1>
+
+        <p class="auth-subtitle">
+            Add a company to the college placement system.
+        </p>
+
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label for="name">
+                    Company Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter company name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter company email"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter company phone"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="location">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="Enter company location"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="website">
+                    Website
+                </label>
+
+                <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    placeholder="https://example.com"
+                >
+
+            </div>
+
+
+            <button type="submit" class="auth-btn">
+                Add Company →
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            <a href="{{ url_for('companies') }}">
+                ← Back to Companies
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

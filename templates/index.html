@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home | Placify
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <span class="hero-badge">
+                🚀 Your Career Starts Here
+            </span>
+
+            <h1>
+                Build Your
+                <span>Future.</span>
+            </h1>
+
+            <p>
+                Discover placement opportunities, connect with
+                leading companies, and take the next step toward
+                your dream career.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{{url_for('public_jobs')}}" class="primary-btn">
+                    Explore Jobs →
+                </a>
+
+                <a href="{{url_for('login')}}" class="secondary-btn">
+                    Student Login
+                </a>
+                <a href="{{ url_for('register') }}" class="secondary-btn">
+                    Create Account
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hero-card">
+
+            <div class="floating-card card-one">
+                🎯
+                <div>
+                    <strong>Career Opportunities</strong>
+                    <small>Find your perfect role</small>
+                </div>
+            </div>
+
+
+            <div class="career-circle">
+
+                <div class="circle-inner">
+                    🎓
+                </div>
+
+            </div>
+
+
+            <div class="floating-card card-two">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>Placement Ready</strong>
+                    <small>Start your journey</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Statistics -->
+
+<section class="stats-section">
+
+    <div class="stat-card">
+
+        <span class="stat-icon">👨‍🎓</span>
+
+        <div>
+            <h2>500+</h2>
+            <p>Students</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span class="stat-icon">🏢</span>
+
+        <div>
+            <h2>50+</h2>
+            <p>Companies</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span class="stat-icon">💼</span>
+
+        <div>
+            <h2>100+</h2>
+            <p>Opportunities</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span class="stat-icon">🏆</span>
+
+        <div>
+            <h2>85%</h2>
+            <p>Placement Rate</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Features -->
+
+<section class="features-section">
+
+    <div class="section-heading">
+
+        <span>WHY PLACIFY?</span>
+
+        <h2>
+            Everything You Need
+            <br>
+            To Start Your Career
+        </h2>
+
+        <p>
+            A simple platform designed to make the placement
+            process easier for students and administrators.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔍
+            </div>
+
+            <h3>Discover Opportunities</h3>
+
+            <p>
+                Explore job opportunities from companies
+                participating in campus placements.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <h3>Check Eligibility</h3>
+
+            <p>
+                Quickly determine whether you meet the
+                eligibility requirements for a job.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>Track Applications</h3>
+
+            <p>
+                Monitor your applications from submission
+                to shortlist and final selection.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta-section">
+
+    <div>
+
+        <h2>
+            Ready to Start Your Career Journey?
+        </h2>
+
+        <p>
+            Explore opportunities and take the first step
+            toward your dream career.
+        </p>
+
+        <a href="#" class="primary-btn">
+            Get Started →
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Student | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-card">
+
+        <div class="auth-icon">
+            👨‍🎓
+        </div>
+
+        <span class="auth-badge">
+            Student Management
+        </span>
+
+        <h1>Add Student</h1>
+
+        <p class="auth-subtitle">
+            Add a student to the college placement system.
+        </p>
+
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter student name"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter student email"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter phone number"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="department">Department</label>
+
+                <select id="department" name="department" required>
+
+                    <option value="">Select Department</option>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CIVIL">CIVIL</option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="year">Year</label>
+
+                <select id="year" name="year" required>
+
+                    <option value="">Select Year</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="cgpa">CGPA</label>
+
+                <input
+                    type="number"
+                    id="cgpa"
+                    name="cgpa"
+                    step="0.01"
+                    min="0"
+                    max="10"
+                    placeholder="Enter CGPA"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter student password"
+                    required
+                >
+            </div>
+
+
+            <button type="submit" class="auth-btn">
+                Add Student →
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            <a href="{{ url_for('students') }}">
+                ← Back to Students
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

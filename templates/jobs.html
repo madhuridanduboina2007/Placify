@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}
+Jobs | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="student-table-card">
+
+        <div class="table-header">
+
+            <div>
+
+                <span class="auth-badge">
+                    Job Management
+                </span>
+
+                <h2>Available Jobs</h2>
+
+                <p>
+                    Total Jobs: {{ jobs|length }}
+                </p>
+
+            </div>
+
+            <div>
+
+                <a href="{{ url_for('add_job') }}"
+                   class="auth-btn add-student-btn">
+                    + Add Job
+                </a>
+
+                <a href="{{ url_for('admin_dashboard') }}"
+                   class="auth-btn add-student-btn">
+                    ← Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <table class="company-table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Job Title</th>
+                    <th>Required CGPA</th>
+                    <th>Required Skills</th>
+                    <th>Salary</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for job in jobs %}
+
+                <tr>
+
+                    <td>{{ job["id"] }}</td>
+
+                    <td>{{ job["company_name"] }}</td>
+
+                    <td>{{ job["job_title"] }}</td>
+
+                    <td>{{ job["required_cgpa"] }}</td>
+                    
+                    <td>{{ job["required_skills"] or 'Not specified' }}</td>
+
+                    <td>
+                        {% if job["salary"] %}
+                            ₹{{ job["salary"] }}
+                        {% else %}
+                            Not specified
+                        {% endif %}
+                    </td>
+
+                    <td>{{ job["deadline"] }}</td>
+
+                    <td>
+
+                        <a href="{{ url_for('edit_job',job_id=job['id'])}}">
+                            Edit
+                        </a>
+
+                        <form
+                           action="{{ url_for('delete_job', job_id=job['id']) }}"
+                           method="POST"
+                           style="display: inline;"
+                           onsubmit="return confirm('Are you sure you want to delete this job?');"
+                       >
+                           <button
+                              type="submit"
+                              style="
+                              background: none;
+                              border: none;
+                              padding: 0;
+                              color: #6c63ff;
+                              font-size: inherit;
+                              cursor: pointer;
+                         "
+                       >
+                             Delete
+                          </button>
+                       </form>|
+
+                       
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="7" style="text-align: center;">
+                        No jobs available yet.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard | Placify
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-dashboard">
+
+    <div class="admin-header">
+
+        <div>
+            <span class="dashboard-badge">
+                🛡️ Administration
+            </span>
+
+            <h1>Admin Dashboard</h1>
+
+            <p>
+                Welcome, {{ session['admin_username'] }}.
+                Manage your college placement system from one place.
+            </p>
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+
+    <div class="admin-grid">
+
+        <!-- Students -->
+        <div class="admin-card">
+
+            <div class="admin-card-icon">
+                👨‍🎓
+            </div>
+
+            <h2>Students</h2>
+
+            <p>
+                View and manage registered students.
+            </p>
+
+            <a href="{{ url_for('students') }}" class="dashboard-link">
+                Manage Students →
+            </a>
+
+        </div>
+
+
+        <!-- Companies -->
+        <div class="admin-card">
+
+            <div class="admin-card-icon">
+                🏢
+            </div>
+
+            <h2>Companies</h2>
+
+            <p>
+                Add and manage companies participating
+                in campus placements.
+            </p>
+
+            <a href="{{ url_for('companies') }}" class="dashboard-link">
+                Manage Companies →
+            </a>
+
+        </div>
+
+
+        <!-- Jobs -->
+        <div class="admin-card">
+
+            <div class="admin-card-icon">
+                💼
+            </div>
+
+            <h2>Jobs</h2>
+
+            <p>
+                Create and manage placement opportunities.
+            </p>
+
+            <a href="{{ url_for('jobs') }}" class="dashboard-link">
+                Manage Jobs →
+            </a>
+
+            <a href="{{ url_for('add_job') }}" class="dashboard-link">
+                + Add Job
+            </a>
+
+        </div>
+
+
+        <!-- Applications -->
+        <div class="admin-card">
+
+            <div class="admin-card-icon">
+                📋
+            </div>
+
+            <h2>Applications</h2>
+
+            <p>
+                Review student applications and update
+                application status.
+            </p>
+
+            <a href="{{ url_for('applications') }}" class="dashboard-link">
+                View Applications →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
